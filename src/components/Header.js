@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../styles/Header.css";
 
 const Header = () => {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm bg-danger navbar-dark fixed-top">
@@ -108,18 +116,27 @@ const Header = () => {
         </div>
 
         <div className="input-search-container">
-          <form className="d-flex justify-content-center">
+          <form
+            className="d-flex justify-content-center"
+            onSubmit={handleSubmit}
+          >
             <div className="d-inline-block position-relative">
               <span className="inputIcon">
                 <i className="far fa-building"></i>
               </span>
-              <label className="inputLabel-default" htmlFor="input-label-from">
-                FROM
-              </label>
+              <label
+                className="inputLabel-default"
+                htmlFor="input-label-from"
+              ></label>
               <input
                 id="input-label-from"
                 className="inputForm"
                 type="text"
+                value={from}
+                placeholder="FROM"
+                onChange={(e) => {
+                  setFrom(e.target.value);
+                }}
                 list="input-from-list"
               />
               <datalist id="input-from-list">
@@ -131,13 +148,19 @@ const Header = () => {
               <span className="inputIcon">
                 <i className="far fa-building"></i>
               </span>
-              <label className="inputLabel-default" htmlFor="input-label-to">
-                TO
-              </label>
+              <label
+                className="inputLabel-default"
+                htmlFor="input-label-to"
+              ></label>
               <input
                 id="input-label-to"
                 className="inputForm"
                 type="text"
+                placeholder="TO"
+                value={to}
+                onChange={(e) => {
+                  setTo(e.target.value);
+                }}
                 list="input-to-list"
               />
               <datalist id="input-to-list">
@@ -157,21 +180,9 @@ const Header = () => {
                 id="input-label-onward-date"
                 className="inputForm"
                 type="date"
-              />
-            </div>
-
-            <div className="d-inline-block position-relative">
-              <span className="inputIcon">
-                <i className="fas fa-calendar-alt"></i>
-              </span>
-              <label
-                className="inputLabel-default"
-                htmlFor="input-label-return-date"
-              ></label>
-              <input
-                id="input-label-return-date"
-                className="inputForm"
-                type="date"
+                onChange={(e) => {
+                  setDateFrom(e.target.value);
+                }}
               />
             </div>
 
