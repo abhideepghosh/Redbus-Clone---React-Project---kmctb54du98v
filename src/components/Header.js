@@ -1,13 +1,30 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setTravelData } from "../features/Travel";
 import "./../styles/Header.css";
 
 const Header = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [dateFrom, setDateFrom] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (from !== "" && !to !== "" && dateFrom !== "") {
+      dispatch(
+        setTravelData({
+          from,
+          to,
+          date: dateFrom,
+          price: 0,
+          seats: 0,
+        })
+      );
+      navigate(`/search/${from}/${to}`);
+    }
   };
 
   return (

@@ -4,6 +4,7 @@ import "../styles/App.css";
 import Header from "./Header";
 import Home from "./Home";
 import SearchBus from "./SearchBus";
+import SeatSelection from "./SeatSelection";
 const App = () => {
   return (
     <div id="main" className="header">
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search/:from/:to" element={<SearchBus />} />
+          <Route path="/seatselection" element={<SeatSelection />} />
         </Routes>
       </BrowserRouter>
     </div>
