@@ -5,6 +5,7 @@
   padding: 147px;
   padding-top: 50px;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .grid-layout {

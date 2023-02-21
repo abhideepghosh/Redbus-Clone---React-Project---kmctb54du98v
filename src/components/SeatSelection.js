@@ -30,6 +30,7 @@ const SeatSelection = () => {
       dispatch(
         setTravelData({
           ...travelData,
+          price: travelData.price * set.size,
           seats: set.size,
         })
       );
