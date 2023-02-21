@@ -22,6 +22,65 @@ const SearchBus = () => {
     return `${randomNum}/10`;
   };
 
+  const sortByArrival = () => {
+    const asciiCalc = (str) => {
+      let result = 0;
+      for (let i = 0; i < str.length; i++) {
+        result += str[i].charCodeAt(0);
+      }
+      return result;
+    };
+    if (responseData.length > 0) {
+      const resultAM = responseData
+        .filter((e) => e.arrivalTime.slice(-2) === "AM")
+        .sort((a, b) => asciiCalc(a.arrivalTime) - asciiCalc(b.arrivalTime));
+      const resultPM = responseData
+        .filter((e) => e.arrivalTime.slice(-2) === "PM")
+        .sort((a, b) => asciiCalc(a.arrivalTime) - asciiCalc(b.arrivalTime));
+      setResponseData([...resultAM, ...resultPM]);
+    }
+  };
+
+  const sortByDeparture = () => {
+    const asciiCalc = (str) => {
+      let result = 0;
+      for (let i = 0; i < str.length; i++) {
+        result += str[i].charCodeAt(0);
+      }
+      return result;
+    };
+    if (responseData.length > 0) {
+      const resultAM = responseData
+        .filter((e) => e.departureTime.slice(-2) === "AM")
+        .sort(
+          (a, b) => asciiCalc(a.departureTime) - asciiCalc(b.departureTime)
+        );
+      const resultPM = responseData
+        .filter((e) => e.departureTime.slice(-2) === "PM")
+        .sort(
+          (a, b) => asciiCalc(a.departureTime) - asciiCalc(b.departureTime)
+        );
+      setResponseData([...resultAM, ...resultPM]);
+    }
+  };
+
+  const sortByPrice = () => {
+    if (responseData.length > 0) {
+      const result = responseData.sort((a, b) => a.ticketPrice - b.ticketPrice);
+      setResponseData([...result]);
+    }
+  };
+
+  const sortByRating = () => {
+    if (responseData.length > 0) {
+      const result = responseData.sort(
+        (a, b) => a.rating.slice(0, 1) - b.rating.slice(0, 1)
+      );
+      console.log(result);
+      setResponseData([...result]);
+    }
+  };
+
   const getAllResults = async () => {
     const response = await fetch(allBussesUrl);
     const data = await response.json();
@@ -64,16 +123,24 @@ const SearchBus = () => {
             <span className="sortBySpan">SORT BY:</span>
           </div>
           <div className="equalHMV eq">
-            <span className="sortBySpan">DEPARTURE</span>
+            <span className="sortBySpan clickCursor" onClick={sortByDeparture}>
+              DEPARTURE
+            </span>
           </div>
           <div className="equalHMV eq">
-            <span className="sortBySpan">ARRIVAL</span>
+            <span className="sortBySpan clickCursor" onClick={sortByArrival}>
+              ARRIVAL
+            </span>
           </div>
           <div className="equalHMV eq">
-            <span className="sortBySpan">RATING</span>
+            <span className="sortBySpan clickCursor" onClick={sortByRating}>
+              RATING
+            </span>
           </div>
           <div className="equalHMV eq">
-            <span className="sortBySpan">PRICE</span>
+            <span className="sortBySpan clickCursor" onClick={sortByPrice}>
+              PRICE
+            </span>
           </div>
         </div>
       </div>
@@ -86,10 +153,10 @@ const SearchBus = () => {
             <div className="equalHMV eq">RATING</div>
             <div className="equalHMV eq">PRICE</div>
           </div>
-          {responseData.map((e) => (
+          {responseData.map((e, i) => (
             <div
               className="equalHMVWrap eqWrap hov clickCursor"
-              key={e.id}
+              key={e.id + i}
               onClick={() => {
                 handleSelected(e);
               }}
