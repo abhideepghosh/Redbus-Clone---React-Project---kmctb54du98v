@@ -1,31 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import "./../styles/SeatSelection.css";
 
 const SeatSelection = () => {
   const travelData = useSelector((state) => state.travel.value);
-  const [seats, setSeats] = useState([]);
-  console.log(travelData);
+  const set = new Set();
 
   const seatSelector = (e) => {
-    console.log(e.target.style.backgroundColor === "");
-    //e.target.tagName.textContent -> Add to set
-    //if('') then set.add and add color -> else if(color) then set.delete and add different color -> else set.add()
+    const seatNo = +e.target.textContent.slice(-2);
+    if (e.target.style.backgroundColor === "") {
+      set.add(seatNo);
+      e.target.style.backgroundColor = "red";
+    } else if (e.target.style.backgroundColor === "red") {
+      set.delete(seatNo);
+      e.target.style.backgroundColor = "gray";
+    } else {
+      set.add(seatNo);
+      e.target.style.backgroundColor = "red";
+    }
+    console.log(set.size);
   };
 
   return (
     <div className="seatSelector">
       <h1>Seat Selection</h1>
       <div className="grid-layout" onClick={seatSelector}>
-        <div className="grid-item grid-item-1">SEAT 1 </div>
-        <div className="grid-item grid-item-2">SEAT 2</div>
-        <div className="grid-item span-3 grid-item-3">SEAT 3</div>
-        <div className="grid-item grid-item-4">SEAT 4</div>
-        <div className="grid-item span-2 grid-item-5">SEAT 5</div>
-        <div className="grid-item grid-item-6">SEAT 6</div>
-        <div className="grid-item grid-item-7">SEAT 7</div>
-        <div className="grid-item grid-item-8">SEAT 8</div>
-        <div className="grid-item grid-item-9">SEAT 9</div>
+        <div className="grid-item grid-item-1">SEAT 01 </div>
+        <div className="grid-item grid-item-2">SEAT 02</div>
+        <div className="grid-item span-3 grid-item-3">SEAT 03</div>
+        <div className="grid-item grid-item-4">SEAT 04</div>
+        <div className="grid-item span-2 grid-item-5">SEAT 05</div>
+        <div className="grid-item grid-item-6">SEAT 06</div>
+        <div className="grid-item grid-item-7">SEAT 07</div>
+        <div className="grid-item grid-item-8">SEAT 08</div>
+        <div className="grid-item grid-item-9">SEAT 09</div>
         <div className="grid-item span-2 grid-item-10">SEAT 10</div>
         <div className="grid-item grid-item-11">SEAT 11</div>
         <div className="grid-item grid-item-12">SEAT 12</div>
