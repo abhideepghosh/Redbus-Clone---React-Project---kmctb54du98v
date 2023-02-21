@@ -18,12 +18,35 @@ const SeatSelection = () => {
       set.add(seatNo);
       e.target.style.backgroundColor = "red";
     }
+    // console.log(set.size);
+  };
+
+  const bookSeat = () => {
     console.log(set.size);
   };
 
   return (
     <div className="seatSelector">
-      <h1>Seat Selection</h1>
+      <h1>
+        Seat Selection:{" "}
+        <span className="sortBySpan">Select Atleast 1 Seat</span>
+      </h1>
+      <button
+        onClick={bookSeat}
+        style={{
+          color: "white",
+          margin: "5px",
+          padding: "5px",
+          border: "2px transparent solid",
+          borderRadius: "5px",
+          width: "100%",
+          background: "rgb(255,0,87)",
+          background:
+            "linear-gradient(90deg, rgba(255,0,87,1) 46%, rgba(255,0,129,1) 100%)",
+        }}
+      >
+        Book Seats
+      </button>
       <div className="grid-layout" onClick={seatSelector}>
         <div className="grid-item grid-item-1">SEAT 01 </div>
         <div className="grid-item grid-item-2">SEAT 02</div>
