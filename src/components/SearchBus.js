@@ -36,7 +36,7 @@ const SearchBus = () => {
     dispatch(
       setTravelData({
         ...travelData,
-        price: e.ticketPrice,
+        price: +e.ticketPrice,
       })
     );
     navigate("/seatselection");

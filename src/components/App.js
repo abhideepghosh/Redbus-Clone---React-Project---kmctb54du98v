@@ -5,6 +5,7 @@ import Header from "./Header";
 import Home from "./Home";
 import SearchBus from "./SearchBus";
 import SeatSelection from "./SeatSelection";
+import TicketStatus from "./TicketStatus";
 const App = () => {
   return (
     <div id="main" className="header">
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/search/:from/:to" element={<SearchBus />} />
           <Route path="/seatselection" element={<SeatSelection />} />
+          <Route path="/ticketstatus" element={<TicketStatus />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setTravelData } from "../features/Travel";
 import "./../styles/SeatSelection.css";
 
 const SeatSelection = () => {
   const travelData = useSelector((state) => state.travel.value);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const set = new Set();
 
   const seatSelector = (e) => {
@@ -22,7 +26,15 @@ const SeatSelection = () => {
   };
 
   const bookSeat = () => {
-    console.log(set.size);
+    if (set.size > 0) {
+      dispatch(
+        setTravelData({
+          ...travelData,
+          seats: set.size,
+        })
+      );
+      navigate("/ticketstatus");
+    }
   };
 
   return (
