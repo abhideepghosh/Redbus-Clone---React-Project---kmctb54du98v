@@ -27,6 +27,14 @@ const Header = () => {
     }
   };
 
+  const valueSwitch = () => {
+    const fr = from;
+    const t = to;
+    setFrom(t);
+    setTo(fr);
+  }
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm bg-danger navbar-dark fixed-top">
@@ -161,6 +169,8 @@ const Header = () => {
               </datalist>
             </div>
 
+            <button className="btn btn-danger rounded-0 pl-3 pr-3 pb-2" onClick={valueSwitch}>&#8596;</button>
+
             <div className="d-inline-block position-relative">
               <span className="inputIcon">
                 <i className="far fa-building"></i>
@@ -185,6 +195,7 @@ const Header = () => {
               </datalist>
             </div>
 
+
             <div className="d-inline-block position-relative">
               <span className="inputIcon">
                 <i className="fas fa-calendar-alt"></i>
@@ -193,6 +204,7 @@ const Header = () => {
                 className="inputLabel-default"
                 htmlFor="input-label-onward-date"
               ></label>
+              
               <input
                 id="input-label-onward-date"
                 className="inputForm"
@@ -211,6 +223,7 @@ const Header = () => {
               />
             </div>
           </form>
+          
         </div>
       </div>
     </div>
